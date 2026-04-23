@@ -1,0 +1,23 @@
+# Web backend
+Flask==2.3.3
+Flask-CORS==4.0.0
+python-dotenv==1.0.0
+
+# Database history storage
+pymongo==4.8.0
+
+# Password hashing (pulled in by Flask/Werkzeug, listed here for clarity)
+# Werkzeug is installed as a Flask dependency.
+
+# Export formats
+reportlab==4.0.9
+python-docx==0.8.11
+
+# Local speech-to-text.
+# This uses the local Whisper package, not an external AI API.
+openai-whisper==20231117
+imageio-ffmpeg==0.6.0
+
+# Whisper runtime dependency.
+# Install a compatible torch build for your platform if pip does not resolve it automatically.
+# Example (CPU): pip install torch --index-url https://download.pytorch.org/whl/cpu

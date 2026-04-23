@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adaptive Notes Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css?v=5" />
+</head>
+<body>
+  <div class="grid-lines"></div>
+  <div class="particles-container">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+  
+  <div class="bg-shape bg-shape-one"></div>
+  <div class="bg-shape bg-shape-two"></div>
+  <div class="bg-shape bg-shape-three"></div>
+
+  <main class="login-shell login-shell--clean" id="loginShell">
+    <section class="auth-card auth-card--wide">
+      <div class="auth-side">
+        <p class="auth-brand">Adaptive Notes Studio</p>
+        <h1 class="auth-title">Create your account</h1>
+        <p class="auth-subtitle">Register once, then sign in to reach your dashboard.</p>
+
+        <div class="auth-side-metrics">
+          <div class="auth-side-metric">
+            <strong>AI</strong>
+            <span>Transcription + notes</span>
+          </div>
+          <div class="auth-side-metric">
+            <strong>Quiz</strong>
+            <span>Knowledge checks</span>
+          </div>
+          <div class="auth-side-metric">
+            <strong>DB</strong>
+            <span>History saved</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-main">
+        <div class="auth-switch" role="tablist" aria-label="Authentication mode">
+          <button type="button" class="auth-tab is-active" id="tabSignup" aria-selected="true">Sign up</button>
+          <button type="button" class="auth-tab" id="tabLogin" aria-selected="false">Login</button>
+        </div>
+
+        <form class="auth-form" id="loginForm" data-mode="signup">
+          <label class="auth-field" id="nameField">
+            <span class="auth-label">Name</span>
+            <div class="auth-input">
+              <span class="auth-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 12.2a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M4.5 20c1.8-3.3 5-5 7.5-5s5.7 1.7 7.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <input id="signupName" type="text" name="name" autocomplete="name" placeholder="Your name">
+            </div>
+          </label>
+
+          <label class="auth-field">
+            <span class="auth-label">Email</span>
+            <div class="auth-input">
+              <span class="auth-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="m5.5 8 6.1 5a.9.9 0 0 0 1.1 0l6.1-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <input id="loginEmail" type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+            </div>
+          </label>
+
+          <label class="auth-field">
+            <span class="auth-label">Password</span>
+            <div class="auth-input">
+              <span class="auth-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 10.5V8.6A4.5 4.5 0 0 1 12 4.1a4.5 4.5 0 0 1 4.5 4.5v1.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M6.7 10.5h10.6c.8 0 1.4.6 1.4 1.4v6c0 .8-.6 1.4-1.4 1.4H6.7c-.8 0-1.4-.6-1.4-1.4v-6c0-.8.6-1.4 1.4-1.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <input id="loginPassword" type="password" name="password" autocomplete="new-password" required placeholder="Password">
+              <button class="auth-trailing-btn" id="togglePasswordBtn" type="button" aria-label="Show password">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12s-3.5 6.5-9.5 6.5S2.5 12 2.5 12Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </button>
+            </div>
+          </label>
+
+          <label class="auth-field" id="confirmField">
+            <span class="auth-label">Confirm password</span>
+            <div class="auth-input">
+              <span class="auth-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 10.5V8.6A4.5 4.5 0 0 1 12 4.1a4.5 4.5 0 0 1 4.5 4.5v1.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M6.7 10.5h10.6c.8 0 1.4.6 1.4 1.4v6c0 .8-.6 1.4-1.4 1.4H6.7c-.8 0-1.4-.6-1.4-1.4v-6c0-.8.6-1.4 1.4-1.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <input id="signupConfirm" type="password" name="confirmPassword" autocomplete="new-password" placeholder="Confirm password">
+            </div>
+          </label>
+
+          <div class="auth-row">
+            <label class="auth-check">
+              <input id="rememberMe" type="checkbox" checked>
+              <span>Remember me</span>
+            </label>
+          </div>
+
+          <button class="auth-primary" id="loginSubmitBtn" type="submit">Create account</button>
+
+          <p id="loginFeedback" class="auth-feedback" aria-live="polite"></p>
+
+          <div class="auth-divider" role="separator" aria-label="or">
+            <span>or</span>
+          </div>
+
+          <button class="auth-google" type="button" id="googleSignupBtn">
+            <span class="google-mark" aria-hidden="true">G</span>
+            Continue with Google
+          </button>
+
+          <p class="auth-footer">
+            Already have an account? <button type="button" class="auth-link-btn" id="footerToggle">Login</button>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <main class="page-shell dashboard-shell" id="dashboardShell" hidden>
+    <nav class="app-nav">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <strong>Adaptive Notes Studio</strong>
+        <small class="nav-user" id="navUser" hidden></small>
+      </div>
+      <div class="nav-actions">
+        <a href="#historyList" class="secondary-btn nav-link-btn">History</a>
+        <button id="logoutBtn" class="secondary-btn">Logout</button>
+      </div>
+    </nav>
+
+    <section class="overview-grid" id="overviewGrid">
+      <article class="overview-card">
+        <p class="overview-label">Signed in as</p>
+        <strong class="overview-value" id="overviewUser">—</strong>
+        <p class="overview-sub">Account status: active</p>
+      </article>
+      <article class="overview-card">
+        <p class="overview-label">Sessions saved</p>
+        <strong class="overview-value" id="overviewSessions">0</strong>
+        <p class="overview-sub" id="overviewLastTopic">No sessions yet</p>
+      </article>
+      <article class="overview-card">
+        <p class="overview-label">System</p>
+        <strong class="overview-value" id="overviewSystem">Checking…</strong>
+        <p class="overview-sub">Whisper + MongoDB health</p>
+      </article>
+    </section>
+
+    <section class="hero-card">
+      <div class="hero-orbit hero-orbit-one"></div>
+      <div class="hero-orbit hero-orbit-two"></div>
+      <div class="hero-glow hero-glow-left"></div>
+      <div class="hero-glow hero-glow-right"></div>
+      <div class="hero-inner">
+        <div class="hero-topline">
+          <p class="eyebrow">Adaptive Learning Studio</p>
+          <span class="version-chip">Motion Canvas</span>
+        </div>
+        <h1>AI-Powered Adaptive Notes Generator</h1>
+        <p class="hero-copy">Upload lecture audio or video, transcribe it, generate structured notes by level, and save the full session in MongoDB.</p>
+
+        <div class="hero-metrics">
+          <div class="hero-metric">
+            <span class="metric-value">3</span>
+            <span class="metric-label">Learning modes</span>
+          </div>
+          <div class="hero-metric">
+            <span class="metric-value">PDF</span>
+            <span class="metric-label">Preview and export</span>
+          </div>
+          <div class="hero-metric">
+            <span class="metric-value">AI</span>
+            <span class="metric-label">Speech to notes</span>
+          </div>
+        </div>
+
+        <div class="hero-status-bar">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Speech Engine: <strong id="whisperStatus">Checking...</strong></span>
+          </div>
+          <div class="status-pill">
+            <span class="status-dot mongo"></span>
+            <span>MongoDB: <strong id="mongoStatus">Checking...</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="level-section" id="levelGrid">
+      <button class="level-card" data-level="beginner">
+        <span class="level-badge beginner-badge">B</span>
+        <strong>Beginner</strong>
+        <small>Simple concepts, basic terminology</small>
+      </button>
+      <button class="level-card active" data-level="intermediate">
+        <span class="level-badge intermediate-badge">I</span>
+        <strong>Intermediate</strong>
+        <small>Detailed explanations, best practices</small>
+      </button>
+      <button class="level-card" data-level="advanced">
+        <span class="level-badge advanced-badge">A</span>
+        <strong>Advanced</strong>
+        <small>Complex concepts, deeper system thinking</small>
+      </button>
+    </section>
+
+    <section class="panel upload-panel">
+      <div class="panel-header">
+        <h2>Audio Recording &amp; Transcription</h2>
+        <p>Choose an audio or video file to start the pipeline.</p>
+      </div>
+
+      <label class="upload-zone" for="mediaInput">
+        <input id="mediaInput" type="file" accept="audio/*,video/*" hidden />
+        <div class="upload-copy">
+          <strong>Upload audio/video file</strong>
+          <span>MP4, MP3, WAV, M4A and similar formats are supported.</span>
+        </div>
+        <div class="file-meta-box">
+          <span class="file-label">Selected file</span>
+          <span id="fileMeta">No file selected yet</span>
+        </div>
+      </label>
+
+      <div class="primary-row">
+        <button id="processBtn" class="primary-btn">Transcribe and Generate Notes</button>
+      </div>
+      <p id="feedback" class="feedback">Ready to process.</p>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel output-panel">
+        <div class="panel-header">
+          <h2>Generated Output</h2>
+          <p>The lecture content appears here after processing.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Topic</h3>
+          <p id="topicText">Waiting for input</p>
+        </div>
+
+        <div class="info-card large">
+          <h3>Transcription</h3>
+          <p id="transcriptionText">No transcription yet</p>
+        </div>
+
+        <div class="notes-shell" id="notesBlock">
+          <div class="notes-card">
+            <h3>Introduction</h3>
+            <p id="introText">Generated introduction will appear here.</p>
+          </div>
+          <div class="notes-card">
+            <h3>Summary</h3>
+            <p id="summaryText">Generated summary will appear here.</p>
+          </div>
+          <div class="notes-card">
+            <h3>Key Highlights</h3>
+            <ul id="highlightsList"></ul>
+          </div>
+          <div class="notes-card">
+            <h3>Learning Structure</h3>
+            <ol id="structureList"></ol>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button id="previewBtn" class="secondary-btn">Preview</button>
+          <button id="pdfBtn" class="secondary-btn">Export PDF</button>
+          <button id="docxBtn" class="secondary-btn">Export DOCX</button>
+        </div>
+      </section>
+
+      <aside class="panel side-panel">
+        <div class="panel-header">
+          <h2>Workflow</h2>
+          <p>What the app does for each upload.</p>
+        </div>
+
+        <div class="workflow-list">
+          <div class="workflow-item">
+            <span>1</span>
+            <div>
+              <strong>Capture</strong>
+              <p>Upload lecture audio or video.</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <span>2</span>
+            <div>
+              <strong>Transcribe</strong>
+              <p>Extract spoken content into text.</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <span>3</span>
+            <div>
+              <strong>Structure</strong>
+              <p>Generate notes based on selected difficulty.</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <span>4</span>
+            <div>
+              <strong>Export</strong>
+              <p>Preview, download, and store output history.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="feature-grid">
+      <section class="panel feature-panel">
+        <div class="panel-header">
+          <h2>Concept Visualizer</h2>
+          <p>Quick visual breakdowns generated from the lecture content.</p>
+        </div>
+        <div id="diagramList" class="diagram-list">
+          <p class="empty-state">Process a lecture to generate diagram ideas.</p>
+        </div>
+      </section>
+
+      <section class="panel feature-panel">
+        <div class="panel-header">
+          <h2>Knowledge Check Quiz</h2>
+          <p>Answer a few questions to verify understanding.</p>
+        </div>
+        <div id="quizList" class="quiz-list">
+          <p class="empty-state">Quiz questions will appear after note generation.</p>
+        </div>
+        <div class="quiz-actions">
+          <button id="submitQuizBtn" class="secondary-btn">Check Answers</button>
+          <p id="quizResult" class="feedback">No quiz submitted yet.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="panel-header">
+        <h2>MongoDB-backed History</h2>
+        <p>All generated sessions are listed below.</p>
+      </div>
+      <div id="historyList" class="history-list">
+        <p class="empty-state">Nothing generated yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="previewDialog" class="preview-dialog">
+    <form method="dialog" class="preview-header">
+      <h3>Notes Preview</h3>
+      <button class="secondary-btn close-btn">Close</button>
+    </form>
+    <div id="previewContent" class="preview-body"></div>
+  </dialog>
+
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-card">
+      <div class="loading-rings">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h3>Processing Lecture</h3>
+      <p id="loadingText">Transcribing audio and building notes...</p>
+    </div>
+  </div>
+
+  <script src="/assets/app.js?v=5"></script>
+</body>
+</html>

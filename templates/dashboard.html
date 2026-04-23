@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes - Adaptive Notes Generator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .dashboard-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+        }
+        
+        .notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .level-badge-large {
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .notes-section {
+            margin-bottom: 40px;
+        }
+        
+        .notes-section h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .section-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .section-card h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .bullet-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .bullet-list li:before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .simplified-box {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            border-radius: 5px;
+        }
+        
+        .quiz-section {
+            margin-top: 40px;
+        }
+        
+        .question-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+        }
+        
+        .options {
+            margin-top: 15px;
+        }
+        
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            background: #e8f0fe;
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .submit-quiz-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 30px 0;
+        }
+        
+        .quiz-results {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .weak-topics {
+            margin-top: 20px;
+            padding: 20px;
+            background: #ffebee;
+            border-radius: 10px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <div class="notes-header">
+                <h1 id="notesTitle">Lecture Notes</h1>
+                <div class="nav-buttons">
+                    <span class="level-badge-large" id="levelDisplay"></span>
+                    <button class="back-btn" onclick="window.location.href='/'">
+                        <i class="fas fa-arrow-left"></i> New Lecture
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Summary Section -->
+            <div class="notes-section">
+                <h3><i class="fas fa-align-left"></i> Summary</h3>
+                <div class="section-card" id="summarySection"></div>
+            </div>
+            
+            <!-- Key Points -->
+            <div class="notes-section">
+                <h3><i class="fas fa-star"></i> Key Highlights</h3>
+                <div class="section-card" id="keyPointsSection"></div>
+            </div>
+            
+            <!-- Detailed Notes -->
+            <div class="notes-section">
+                <h3><i class="fas fa-file-alt"></i> Detailed Notes</h3>
+                <div id="detailedNotes"></div>
+            </div>
+            
+            <!-- Diagrams -->
+            <div class="notes-section">
+                <h3><i class="fas fa-image"></i> Diagrams</h3>
+                <div class="section-card" id="diagramsSection"></div>
+            </div>
+            
+            <!-- Quiz Section -->
+            <div class="quiz-section">
+                <h3><i class="fas fa-question-circle"></i> Practice Quiz</h3>
+                <div id="quizContainer"></div>
+                <button class="submit-quiz-btn" onclick="submitQuiz()">
+                    <i class="fas fa-check-circle"></i> Submit Answers
+                </button>
+                <div id="quizResults" class="quiz-results" style="display: none;"></div>
+            </div>
+            
+            <!-- Download Button -->
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="download-btn" onclick="downloadPDF()">
+                    <i class="fas fa-file-pdf"></i> Download Notes as PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentNotes = null;
+        let currentDiagrams = null;
+        let currentQuiz = null;
+        
+        // Load data on page load
+        window.onload = async function() {
+            await loadNotes();
+            await loadQuiz();
+        };
+        
+        // Load notes
+        async function loadNotes() {
+            try {
+                const response = await fetch('/get_notes');
+                const data = await response.json();
+                
+                currentNotes = data.notes;
+                currentDiagrams = data.diagrams;
+                
+                displayNotes(data);
+            } catch (error) {
+                console.error('Error loading notes:', error);
+            }
+        }
+        
+        // Load quiz
+        async function loadQuiz() {
+            try {
+                const response = await fetch('/get_quiz');
+                const data = await response.json();
+                
+                currentQuiz = data.quiz;
+                displayQuiz(data.quiz);
+                
+                document.getElementById('levelDisplay').textContent = 
+                    data.level.charAt(0).toUpperCase() + data.level.slice(1);
+            } catch (error) {
+                console.error('Error loading quiz:', error);
+            }
+        }
+        
+        // Display notes
+        function displayNotes(data) {
+            const notes = data.notes;
+            
+            // Title
+            document.getElementById('notesTitle').textContent = notes.title || 'Lecture Notes';
+            
+            // Summary
+            if (notes.summary) {
+                document.getElementById('summarySection').innerHTML = `
+                    <p>${notes.summary}</p>
+                `;
+            }
+            
+            // Key Points
+            if (notes.key_points && notes.key_points.length > 0) {
+                let keyPointsHtml = '<ul class="bullet-list">';
+                notes.key_points.forEach(point => {
+                    keyPointsHtml += `<li>${point}</li>`;
+                });
+                keyPointsHtml += '</ul>';
+                document.getElementById('keyPointsSection').innerHTML = keyPointsHtml;
+            }
+            
+            // Detailed Notes
+            if (notes.sections) {
+                let detailedHtml = '';
+                notes.sections.forEach(section => {
+                    detailedHtml += `
+                        <div class="section-card">
+                            <h4>${section.heading}</h4>
+                            <p>${section.content}</p>
+                            ${section.bullets && section.bullets.length > 0 ? 
+                                `<ul class="bullet-list">
+                                    ${section.bullets.map(b => `<li>${b}</li>`).join('')}
+                                </ul>` : ''}
+                            ${section.simplified ? 
+                                `<div class="simplified-box">
+                                    <strong>Simplified:</strong> ${section.simplified}
+                                </div>` : ''}
+                        </div>
+                    `;
+                });
+                document.getElementById('detailedNotes').innerHTML = detailedHtml;
+            }
+            
+            // Diagrams
+            if (data.diagrams && data.diagrams.length > 0) {
+                let diagramsHtml = '<div class="diagrams-grid">';
+                data.diagrams.forEach(diagram => {
+                    diagramsHtml += `
+                        <div class="diagram-thumb">
+                            <img src="/${diagram.path}" alt="Diagram" style="max-width: 100%;">
+                            <p>${diagram.caption}</p>
+                        </div>
+                    `;
+                });
+                diagramsHtml += '</div>';
+                document.getElementById('diagramsSection').innerHTML = diagramsHtml;
+            } else {
+                document.getElementById('diagramsSection').innerHTML = '<p>No diagrams available.</p>';
+            }
+        }
+        
+        // Display quiz
+        function displayQuiz(quiz) {
+            if (!quiz || quiz.length === 0) return;
+            
+            let quizHtml = '';
+            quiz.forEach((q, index) => {
+                quizHtml += `
+                    <div class="question-card" id="question-${q.id || index}">
+                        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+                        <div class="options">
+                            ${q.options.map((opt, optIndex) => `
+                                <label class="option">
+                                    <input type="radio" name="q${index}" value="${opt}">
+                                    ${opt}
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('quizContainer').innerHTML = quizHtml;
+        }
+        
+        // Submit quiz
+        async function submitQuiz() {
+            const answers = [];
+            const quiz = currentQuiz || [];
+            
+            for (let i = 0; i < quiz.length; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                answers.push(selected ? selected.value : '');
+            }
+            
+            try {
+                const response = await fetch('/submit_quiz', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ answers: answers })
+                });
+                
+                const results = await response.json();
+                displayQuizResults(results);
+            } catch (error) {
+                alert('Error submitting quiz: ' + error.message);
+            }
+        }
+        
+        // Display quiz results
+        function displayQuizResults(results) {
+            let resultsHtml = `
+                <h4>Quiz Results</h4>
+                <p>Score: ${results.score.toFixed(1)}%</p>
+                <p>Correct: ${results.results.filter(r => r.correct).length}/${results.results.length}</p>
+            `;
+            
+            if (results.weak_topics && results.weak_topics.length > 0) {
+                resultsHtml += `
+                    <div class="weak-topics">
+                        <h5>Topics to Review:</h5>
+                        <ul>
+                            ${results.weak_topics.map(topic => `<li>${topic}</li>`).join('')}
+                        </ul>
+                        <p><small>Simplified explanations have been added to your notes.</small></p>
+                    </div>
+                `;
+            }
+            
+            const resultsDiv = document.getElementById('quizResults');
+            resultsDiv.innerHTML = resultsHtml;
+            resultsDiv.style.display = 'block';
+        }
+        
+        // Download PDF
+        async function downloadPDF() {
+            try {
+                const response = await fetch('/download_pdf');
+                const blob = await response.blob();
+                
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'lecture_notes.pdf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                alert('Error downloading PDF: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

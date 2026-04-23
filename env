@@ -1,0 +1,15 @@
+# Detection (pick one):
+# — Default: omit INFERENCE_SERVICE_URL → built-in rule-based vision (sharp, no training).
+# — Optional CNN: set URL to FastAPI ml/serve.py after training (see SMART_WASTE_RUN.md).
+# INFERENCE_SERVICE_URL=http://127.0.0.1:5055
+# MOCK_INFERENCE=true
+
+MONGO_URI=mongodb://localhost:27017/
+GOOGLE_MAPS_API_KEY=AIzaSyB8XdUH-d0Xfc_H0-dmVAe3SlL4mt0zzqg
+EMAIL_USER=shannupop@gmail.com
+EMAIL_PASS=miydofkzoxlgmcsw
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin
+SESSION_SECRET=change_this_to_a_long_random_string
+PORT=4000
+CLIENT_ORIGIN=http://localhost:5173
